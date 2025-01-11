@@ -13,3 +13,5 @@ Route::get('/', function () {
 
 Route::get('students', [StudentController::class, 'getAllStudents']);
 Route::get('overview', [StudentController::class, 'showAllStudents']);
+
+Route::get('students/{id}', [StudentController::class, 'showSingle']);

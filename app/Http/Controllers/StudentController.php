@@ -6,12 +6,6 @@ use App\Models\Student;
 
 use Illuminate\Http\Request;
 
-// QUESTION: What is a controller?
-// QUESTION: Why do we use a controller and where does it fit in the MVC model?
-// QUESTION: Where are we using it in our code?
-
-// You can generate this model by using the command: './vendor/bin/sail artisan make:controller StudentController'.
-
 class StudentController extends Controller
 {
     public function getAllStudents() {
@@ -24,5 +18,11 @@ class StudentController extends Controller
         $data = Student::all();
 
         return view('overview', ['students' => $data]);
+    }
+
+    public function showSingle($id) {
+        $student = Student::findOrfail($id);
+
+        return response()->json($student, 200);
     }
 }
