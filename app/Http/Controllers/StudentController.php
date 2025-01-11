@@ -6,15 +6,14 @@ use App\Models\Student;
 
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
-{
+class StudentController extends Controller {
     public function getAllStudents() {
        $data = Student::all();
 
        return response()->json($data, 200);
     }
 
-    public function showAllStudents() {
+    public function showAll() {
         $data = Student::all();
 
         return view('overview', ['students' => $data]);
@@ -24,5 +23,16 @@ class StudentController extends Controller
         $student = Student::findOrfail($id);
 
         return response()->json($student, 200);
+    }
+
+    public function createSingle(Request $request) {
+        $payload = [
+            'firstName' => $request->input('firstName'),
+            'lastName' => $request->input('lastName')
+        ];
+
+        $student = Student::create($payload);
+
+        return response()->json($student, 201);
     }
 }
