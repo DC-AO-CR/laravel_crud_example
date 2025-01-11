@@ -6,6 +6,10 @@ use App\Models\Student;
 
 use Illuminate\Http\Request;
 
+// QUESTION: What does each function have in common with one another?
+// QUESTION: Where do the values of the parameters of the functions come from?
+// QUESTION: What does each function return and where does it end up?
+
 class StudentController extends Controller {
     public function showAll() {
        $students = Student::all();
