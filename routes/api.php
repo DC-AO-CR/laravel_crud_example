@@ -13,3 +13,5 @@ Route::get('/students/{id}', [StudentController::class, 'showSingle']);
 Route::post('/students', [StudentController::class, 'createSingle']);
 
 Route::delete('/students/{id}', [StudentController::class, 'deleteSingle']);
+
+Route::put('/students/{id}', [StudentController::class, 'updateSingle']);

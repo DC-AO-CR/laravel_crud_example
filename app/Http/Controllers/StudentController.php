@@ -7,16 +7,10 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller {
-    public function getAllStudents() {
-       $data = Student::all();
-
-       return response()->json($data, 200);
-    }
-
     public function showAll() {
-        $data = Student::all();
+       $students = Student::all();
 
-        return view('overview', ['students' => $data]);
+       return response()->json($students, 200);
     }
 
     public function showSingle($id) {
@@ -41,5 +35,18 @@ class StudentController extends Controller {
         $student->delete();
 
         return response()->json($student, 200);
+    }
+
+    public function updateSingle($id, Request $request) {
+        $original = Student::findOrFail($id);
+
+        $payload = [
+            'firstName' => $request->input('firstName'),
+            'lastName' => $request->input('lastName')
+        ];
+
+        $original->update($payload);
+
+        return response()->json($original, 200);
     }
 }
